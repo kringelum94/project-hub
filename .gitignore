@@ -108,7 +108,7 @@ dist
 # Edit at https://www.gitignore.io/?templates=laravel
 
 ### Laravel ###
-/vendor/
+vendor/
 node_modules/
 npm-debug.log
 yarn-error.log

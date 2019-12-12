@@ -15,7 +15,6 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" rel="stylesheet">
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -32,30 +31,20 @@
                     </h1>
 
                 <div>
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-
-                    </ul>
-
                     <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
+                    <ul class="ml-auto flex"> 
                         <!-- Authentication Links -->
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->username }} <span class="caret"></span>
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-                                </div>
+                            <li class="mr-12 font-bold text-green text-lg">
+                                <a class="menu-link relative {{ set_active('/') }}" href="/">{{ __('Register') }}</a>
+                            </li>
+                            <li class="mr-12 font-bold text-green text-lg">
+                                <a class="menu-link relative {{ set_active('/login') }}" href="{{ route('login') }}">{{ __('Login') }}</a>
+                            </li>
+                            <li class="mr-12 font-bold text-green text-lg">
+                                <a class="menu-link relative {{ set_active('/features') }}" href="/features">{{ __('Features') }}</a>
+                            </li>
+                            <li class="mr-12 font-bold text-green text-lg">
+                                <a class="menu-link relative {{ set_active('/about') }}" href="/about">{{ __('About us') }}</a>
                             </li>
                     </ul>
                 </div>

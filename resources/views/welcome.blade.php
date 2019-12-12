@@ -1,100 +1,77 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.landing')
 
-        <title>Laravel</title>
+@section('content')
+<div class="flex items-center mt-16">
+    <div class="w-3/5 pr-16">
+        <h1 class="font-bold text-green text-5xl mb-12 leading-tight">Managing your school projects is easier than ever before.</h1>
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+        <h3 class="text-xl text-grey mb-4">Project Hub is a project management tool built with students in mind. 
+        It takes the tools students use the most, and combine them 
+        into one easy-to-use, convenient package.<h3>
 
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Nunito', sans-serif;
-                font-weight: 200;
-                height: 100vh;
-                margin: 0;
-            }
+        <h3 class="text-xl text-grey mb-4">Try it now, completely free.<h3>
 
-            .full-height {
-                height: 100vh;
-            }
+        <div class="flex justify-center mt-12">
+            <a href="/login" class="button mx-6">{{ __('Login') }}</a>
+            <span class="mx-6 text-xl text-grey font-medium">or</span>
+            <a href="/features" class="arrow-link mx-6">Look at the features</a>
+        </div>
+    </div>
 
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
+    <div class="box w-2/5">
+        <h2 class="title text-center py-4">Register for free</h2>
 
-            .position-ref {
-                position: relative;
-            }
+        <form method="POST" action="{{ route('register') }}">
+            @csrf
+            <div>
 
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
+                <div>
+                    <input id="username" type="text" class="input @error('username') is-invalid @enderror" placeholder="Username" name="username" value="{{ old('username') }}" required autocomplete="username">
 
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 13px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
-                    @endauth
-                </div>
-            @endif
-
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
-                </div>
-
-                <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://vapor.laravel.com">Vapor</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+                    @error('username')
+                        @include ('error')
+                    @enderror
                 </div>
             </div>
-        </div>
-    </body>
-</html>
+
+            <div>
+
+                <div>
+                    <input id="email" type="email" class="input @error('email') is-invalid @enderror" placeholder="E-mail" name="email" value="{{ old('email') }}" required autocomplete="email">
+
+                    @error('email')
+                        @include ('error')
+                    @enderror
+                </div>
+            </div>
+
+            <div>
+
+                <div>
+                    <input id="password" type="password" class="input @error('password') is-invalid @enderror" placeholder="Password" name="password" required autocomplete="new-password">
+
+                    @error('password')
+                        @include ('error')
+                    @enderror
+                </div>
+            </div>
+
+            <div>
+
+                <div>
+                    <input id="password-confirm" type="password" class="input" name="password_confirmation" placeholder="Confirm password" required autocomplete="new-password">
+                </div>
+            </div>
+
+            <div>
+                <div class="flex justify-center pt-2 pb-4">
+                    <button type="submit" class="button">
+                        {{ __('Register') }}
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@endsection

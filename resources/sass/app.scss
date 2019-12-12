@@ -5,12 +5,119 @@
 
 @tailwind components;
 
+.title {
+    @apply .font-bold .text-green .text-2xl .mb-4;
+}
+
+.title-big {
+    @apply .font-bold .text-green .text-3xl .mb-4;
+}
+
+.grey-text {
+    @apply .text-grey .text-lg .font-medium;
+}
+
 .button {
-    @apply .bg-white .border-2 .border-green .text-green .font-medium .text-lg rounded-full px-3 mx-3;
+    @apply .bg-white .border-2 .border-green .text-green .font-medium .text-lg rounded-full px-4 py-1 mx-3;
+    transition: 0.2s;
+}
+
+.button:hover {
+    @apply .bg-green .text-white;
+}
+
+.button.danger {
+    @apply .border-red .text-red;
+}
+
+.button.danger:hover {
+    @apply .bg-red .text-white;
+}
+
+.arrow-link {
+    @apply .text-green .text-xl .font-medium;
+}
+
+.arrow-link:hover:after {
+    transform: translateX(0.25rem);
+}
+
+.arrow-link::after {
+    @apply .text-green .text-2xl .font-bold .align-middle .ml-2 .inline-block;
+    content: "\f0da";
+    font-family: "Font Awesome 5 Free";
+    transition: 0.1s;
+}
+
+.back-link {
+    @apply .text-green .text-xl .font-medium;
+}
+
+.back-link:hover:before {
+    transform: translateX(-0.25rem) scale(-1, -1);
+}
+
+.back-link::before {
+    @apply .text-green .text-xl .font-bold .align-middle .mr-2 .inline-block;
+    content: "\f0da";
+    font-family: "Font Awesome 5 Free";
+    transition: 0.1s;
+    transform: scale(-1, -1);
+}
+
+.menu-link::after {
+    @apply .absolute .bg-grey .left-0 .right-0 .mx-auto .w-4/5;
+    content: "";
+    bottom: -0.34rem;
+    height: 0rem;
+    transition: 0.1s;
+}
+
+.menu-link.active::after {
+    height: 0.1rem;
+}
+
+.menu-link:hover:after {
+    height: 0.1rem;
+}
+
+.input {
+    @apply .outline-none .border-2 .rounded-lg .py-2 .px-4 .block .mx-auto .w-11/12 .appearance-none .leading-normal .font-medium .mb-6 .text-green;
+    background-color: rgba(39, 174, 96, 0.15);
+    border: 2px solid transparent;
+    transition: 0.2s;
+}
+
+.input.is-invalid {
+    @apply .border-red;
+}
+
+.input:focus {
+    @apply .border-2 .border-green;
+}
+
+.input:hover {
+    @apply .border-2 .border-green;
 }
 
 .box {
     @apply .bg-white .border-green .border-2 .rounded-lg .shadow .p-5;
+}
+
+.project-icon-big {
+    @apply .absolute .text-green-light .text-7xl;
+    right: 3rem;
+    bottom: 2rem;
+}
+
+.box-link {
+    @apply .absolute .w-full .h-full .top-0 .left-0 .z-10  rounded-lg;
+    background-color: transparent;
+    transition: background-color 100ms linear;
+}
+
+.box-link:hover {
+    background-color: rgba(39, 174, 96, 0.2);
 }
 
 @tailwind utilities;

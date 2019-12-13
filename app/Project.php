@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Activity;
 use Illuminate\Database\Eloquent\Model;
 
 class Project extends Model
@@ -21,5 +22,13 @@ class Project extends Model
 
     public function addTasklist($name){
         return $this->tasklists()->create(compact('name'));
+    }
+
+    public function recordActivity($description){
+        $this->activity()->create(compact('description'));
+    }
+
+    public function activity(){
+        return $this->hasMany(Activity::class);
     }
 }

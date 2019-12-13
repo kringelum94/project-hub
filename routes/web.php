@@ -23,9 +23,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/projects/{project}', 'ProjectsController@show');
     Route::post('/projects', 'ProjectsController@store');
 
-    Route::get('/projects/{project}/tasks', 'TasksController@index');
-    Route::get('/projects/{project}/tasks/create', 'TasksController@create');
-    Route::post('/projects/{project}/tasks', 'TasksController@store');
+    Route::get('/projects/{project}/tasks', 'ProjectTasksController@index');
+    Route::get('/projects/{project}/tasks/create', 'ProjectTasksController@create');
+    Route::post('/projects/{project}/tasks', 'ProjectTasksController@store');
 });
 
 Auth::routes();

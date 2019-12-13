@@ -14,4 +14,12 @@ class Project extends Model
     public function creator(){
         return $this->belongsTo(User::class);
     }
+
+    public function tasklists(){
+        return $this->hasMany(Tasklist::class);
+    }
+
+    public function addTasklist($name){
+        return $this->tasklist()->create(compact('name'));
+    }
 }

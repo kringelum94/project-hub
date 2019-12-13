@@ -6,7 +6,7 @@ use App\Project;
 
 use Illuminate\Http\Request;
 
-class TasksController extends Controller
+class ProjectTasksController extends Controller
 {
     public function index(Project $project){
         if(auth()->user()->isNot($project->creator)){
@@ -19,6 +19,9 @@ class TasksController extends Controller
     public function create(){
     }
 
-    public function store(){
+    public function store(Project $project){
+        request()->validate(['name' => 'required']);
+        $project->addTasklist(request('title'));
+        return redirect($project->path());
     }
 }

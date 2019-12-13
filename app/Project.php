@@ -20,6 +20,6 @@ class Project extends Model
     }
 
     public function addTasklist($name){
-        return $this->tasklist()->create(compact('name'));
+        return $this->tasklists()->create(compact('name'));
     }
 }

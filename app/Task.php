@@ -6,7 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Task extends Model
 {
+    use RecordsActivity;
+
     protected $guarded = [];
+
+    protected static $recordableEvents = ['created', 'deleted'];
 
     protected $touches = ['tasklist'];
 
@@ -16,11 +20,11 @@ class Task extends Model
 
     public function complete(){
         $this->update(['completed' => true]);
-        $this->tasklist->project->recordActivity('completed_task');
+        $this->recordActivity('completed_task');
     }
 
     public function incomplete(){
         $this->update(['completed' => false]);
-        $this->tasklist->project->recordActivity('incompleted_task');
+        $this->recordActivity('incompleted_task');
     }
 }

@@ -48,14 +48,9 @@
             <div class="text-grey text-lg font-medium">{{ wordwrap($project->description, 48, "\n", true) }}</div>
         </div>
         <div class="box mt-8">
-            <div class="mb-4">
-                <p class="text-green font-medium">Latest activity</p>
-                <p class="text-grey font-medium">Fake activity</p>
-                <p class="text-grey font-medium">Fake activity</p>
-                <p class="text-grey font-medium">Fake activity</p>
-            </div>
+            @include('projects.activity.section')
             <div>
-                <p class="text-green font-medium">Important links</p>
+                <h5 class="text-green font-medium">Important links</h5>
                 <p class="text-grey font-medium">Fake link</p>
                 <p class="text-grey font-medium">Fake link</p>
                 <p class="text-grey font-medium">Fake link</p>

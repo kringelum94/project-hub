@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Project extends Model
 {
+    use RecordsActivity;
+
     protected $guarded = [];
 
     public function path(){
@@ -24,11 +26,7 @@ class Project extends Model
         return $this->tasklists()->create(compact('name'));
     }
 
-    public function recordActivity($description){
-        $this->activity()->create(compact('description'));
-    }
-
     public function activity(){
-        return $this->hasMany(Activity::class);
+        return $this->hasMany(Activity::class)->latest();
     }
 }

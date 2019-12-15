@@ -1,0 +1,1 @@
+{{ auth()->user() == $activity->user ? 'You' : $activity->user->username }} created the list: "{{ $activity->subject->name }}"

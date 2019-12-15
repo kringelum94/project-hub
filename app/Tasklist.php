@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Tasklist extends Model
 {
+    use RecordsActivity;
+
     protected $guarded = [];
 
     protected $touches = ['project'];

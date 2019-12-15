@@ -1,1 +1,1 @@
-You incompleted "{{ $activity->subject->description }}"
+{{ auth()->user() == $activity->user ? 'You' : $activity->user->username }} incompleted the task: "{{ $activity->subject->description }}"

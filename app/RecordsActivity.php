@@ -34,12 +34,27 @@ trait RecordsActivity
             $id = $this->id;
         } else if(class_basename($this) === 'Task'){
             $id = $this->tasklist->project_id;
+        } else if(class_basename($this) === 'Tasklist'){
+            $id = $this->project_id;
         }
         $this->activity()->create([
+            'user_id' => $this->activityOwner()->id,
             'description' => $description,
             'changes' => $this->activityChanges(),
             'project_id' => $id
         ]);
+    }
+
+    protected function activityOwner(){
+        if(auth()->check()){
+            return auth()->user();
+        }
+
+        if(class_basename($this) === 'Project'){
+            return $this->creator;
+        }
+
+        return $this->project->creator;
     }
 
     public function activity(){
@@ -63,6 +78,6 @@ trait RecordsActivity
         if(isset(static::$recordableEvents)){
             return static::$recordableEvents;
         }
-        return ['created', 'updated', 'deleted'];
+        return ['created', 'updated'];
     }
 }

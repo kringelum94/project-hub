@@ -7,8 +7,13 @@
                     <a href="/projects">My projects</a> / {{ $project->title }}
                 </p>
                 <span class="mx-6 text-grey no-underline text-lg font-medium">|</span>
-            <a href="{{$project->path()}}/edit" class="button">Edit project</a>
+                <a href="{{$project->path()}}/edit" class="button">Edit project</a>
                 <a href="#" class="button">Add/remove user</a>
+                <form method="POST" action="{{ $project->path() }}">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="button danger">Delete project</button>
+                </form>
             </div>
             <div>
                 <a href="/projects" class="back-link flex items-center">Go back</a>

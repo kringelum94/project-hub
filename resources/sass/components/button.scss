@@ -1,6 +1,6 @@
 .button {
     @apply .bg-button .border-2 .border-green .text-green .font-medium .text-lg rounded-full px-4 py-1 mx-3;
-    transition: 0.2s;
+    transition: background-color 100ms linear;
 }
 
 .button:hover {

@@ -13,6 +13,10 @@
 
 @tailwind components;
 
+/* .bg-page, bg-header {
+    transition: background-color 100ms linear;
+} */
+
 .title {
     @apply .font-bold .text-green .text-2xl .mb-4;
 }

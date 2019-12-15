@@ -27,24 +27,23 @@
 </template>
 
 <script>
+import ProjectHubForm from './ProjectHubForm';
+
 export default {
     data() {
         return {
-            form: {
+            form: new ProjectHubForm({
                 title: '',
                 description: ''
-            }
+            })
         };
     },
 
     methods: {
         submit() {
-            axios.post('/projects', this.form).then(response => {
-                location = response.data.message;
-            }).catch(error => {
-                this.errors = error.response.data.errors;
-            });
-        }
+            this.form.submit('/projects')
+            .then(response => location = response.data.message);
+        }    
     }
 }
 </script>

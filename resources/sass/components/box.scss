@@ -1,6 +1,6 @@
 .box {
     @apply .bg-box .border-green .border-2 .rounded-lg .shadow .p-5;
-    transition: 0.3s;
+    transition: background-color 100ms linear;
 }
 
 .box-link {

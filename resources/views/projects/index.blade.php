@@ -5,7 +5,7 @@
             <div class="flex items-center">
                 <p class="text-grey no-underline text-lg font-bold">My projects</p>
                 <span class="mx-6 text-grey no-underline text-lg font-medium">|</span>
-                <a href="/projects/create" class="button">Create project</a>
+                <a href="/projects/create" @click.prevent="$modal.show('new-project-modal')" class="button">Create project</a>
             </div>
     </header>
     <main class="lg:flex lg:flex-wrap -mx-3">
@@ -17,4 +17,7 @@
         <div class="px-3 text-green text-lg font-bold">No projects yet, click on the "Create project" button to get started.</div>
         @endforelse
     </main>
+
+    <new-project-modal></new-project-modal>
+
 @endsection

@@ -18,7 +18,7 @@
 
             <div>
                 <div>
-                    <textarea class="textarea input @error('description') is-invalid @enderror" required placeholder="Project description" name="description">{{ $project->description }}</textarea>
+                    <textarea rows="3" class="textarea input @error('description') is-invalid @enderror" required placeholder="Project description" name="description">{{ $project->description }}</textarea>
                     @error('description')
                         @include ('error')
                     @enderror

@@ -167,12 +167,12 @@
           appearance: none;
   line-height: 1.5;
   font-weight: 500;
-  margin-bottom: 1.5rem;
   color: #27ae60;
   background-color: rgba(39, 174, 96, 0.15);
   border: 2px solid transparent;
   -webkit-transition: 0.2s;
   transition: 0.2s;
+  resize: none;
 }
 
 .input.is-invalid {
@@ -816,16 +816,6 @@ video {
   .container{
     max-width: 1280px;
   }
-}
-
-.bg-page {
-  -webkit-transition: 0.3s;
-  transition: 0.3s;
-}
-
-.bg-header {
-  -webkit-transition: 0.3s;
-  transition: 0.3s;
 }
 
 .title {

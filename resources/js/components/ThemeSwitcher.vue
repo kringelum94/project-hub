@@ -17,7 +17,7 @@
                     'theme-light': 'white',
                     'theme-dark': '#272727'
                 },
-                selectedTheme: 'theme-light'
+                selectedTheme: ''
             };
         },
 

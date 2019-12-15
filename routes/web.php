@@ -27,6 +27,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/projects', 'ProjectsController@store');
     Route::delete('/projects/{project}', 'ProjectsController@destroy');
 
+    // Invitation routes
+    Route::get('/projects/{project}/invitations', 'ProjectInvitationsController@create');
+    Route::post('/projects/{project}/invitations', 'ProjectInvitationsController@store');
+
     // Tasklist routes
     Route::get('/projects/{project}/tasks', 'ProjectTasksController@index');
     Route::get('/projects/{project}/tasks/create', 'ProjectTasksController@create');

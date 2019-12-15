@@ -1,0 +1,46 @@
+.arrow-link {
+    @apply .text-green .text-xl .font-medium;
+}
+
+.arrow-link:hover:after {
+    transform: translateX(0.25rem);
+}
+
+.arrow-link::after {
+    @apply .text-green .text-2xl .font-bold .align-middle .ml-2 .inline-block;
+    content: "\f0da";
+    font-family: "Font Awesome 5 Free";
+    transition: 0.1s;
+}
+
+.back-link {
+    @apply .text-green .text-xl .font-medium;
+}
+
+.back-link:hover:before {
+    transform: translateX(-0.25rem) scale(-1, -1);
+}
+
+.back-link::before {
+    @apply .text-green .text-xl .font-bold .align-middle .mr-2 .inline-block;
+    content: "\f0da";
+    font-family: "Font Awesome 5 Free";
+    transition: 0.1s;
+    transform: scale(-1, -1);
+}
+
+.menu-link::after {
+    @apply .absolute .bg-grey .left-0 .right-0 .mx-auto .w-4/5;
+    content: "";
+    bottom: -0.34rem;
+    height: 0rem;
+    transition: 0.1s;
+}
+
+.menu-link.active::after {
+    height: 0.1rem;
+}
+
+.menu-link:hover:after {
+    height: 0.1rem;
+}

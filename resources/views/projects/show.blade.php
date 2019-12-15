@@ -6,16 +6,18 @@
                 <p class="text-grey no-underline text-lg font-bold">
                     <a href="/projects">My projects</a> / {{ $project->title }}
                 </p>
-                <span class="mx-6 text-grey no-underline text-lg font-medium">|</span>
-                <a href="{{$project->path()}}/edit" class="button">Edit project</a>
-                <a href="#" class="button">Add/remove user</a>
-                <form method="POST" action="{{ $project->path() }}">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="button danger">Delete project</button>
-                </form>
+                @can ('manage', $project)
+                    <span class="mx-6 text-grey no-underline text-lg font-medium">|</span>
+                    <a href="{{$project->path()}}/edit" class="button">Edit project</a>
+                    <a href="{{$project->path()}}/invitations" class="button">Add/remove user</a>
+                    <form method="POST" action="{{ $project->path() }}">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="button danger">Delete project</button>
+                    </form>
+                @endcan
             </div>
-            <div>
+            <div class="flex items-center">
                 <a href="/projects" class="back-link flex items-center">Go back</a>
             </div>
     </header>
@@ -50,7 +52,14 @@
     <div class="w-5/12 mx-2">
         <div class="box relative">
             <h2 class="title">{{ $project->title }}</h2>
-            <div class="text-grey text-lg font-medium">{{ wordwrap($project->description, 48, "\n", true) }}</div>
+            <div class="text-grey text-lg font-medium mb-4">{{ wordwrap($project->description, 48, "\n", true) }}</div>
+            <div class="text-green text-lg font-medium">Members</div>
+            <div class="flex items-center">
+                @foreach ($project->members as $member)
+                    <img src="{{ gravatar_url($member->email) }}" alt="{{ $member->username }}'s avatar" class="rounded-full w-8 mr-2">
+                @endforeach
+                    <img src="{{ gravatar_url($project->creator->email) }}" alt="{{ $project->creator->username }}'s avatar" class="rounded-full w-8 mr-2">
+            </div>
         </div>
         <div class="box mt-8">
             @include('projects.activity.section')

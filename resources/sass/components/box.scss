@@ -1,0 +1,14 @@
+.box {
+    @apply .bg-box .border-green .border-2 .rounded-lg .shadow .p-5;
+    transition: 0.3s;
+}
+
+.box-link {
+    @apply .absolute .w-full .h-full .top-0 .left-0 .z-10  rounded-lg;
+    background-color: transparent;
+    transition: background-color 100ms linear;
+}
+
+.box-link:hover {
+    background-color: rgba(39, 174, 96, 0.2);
+}

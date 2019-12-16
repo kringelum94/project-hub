@@ -28,7 +28,7 @@
 
             <div>
                 <div class="flex justify-around items-center pt-2 pb-4">
-                    <button type="submit" class="button">
+                    <button type="submit" class="button hover:text-white">
                         {{ __('Login') }}
                     </button>
 

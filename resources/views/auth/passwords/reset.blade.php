@@ -10,7 +10,7 @@
             <input type="hidden" name="token" value="{{ $token }}">
 
             <div>
-                <div>
+                <div class="mb-4">
                     <input id="email" type="email" placeholder="E-mail" class="input @error('email') is-invalid @enderror" name="email" value="{{ $email ?? old('email') }}" required autocomplete="email" autofocus>
 
                     @error('email')
@@ -20,7 +20,7 @@
             </div>
 
             <div>
-                <div>
+                <div class="mb-4">
                     <input id="password" placeholder="New password" type="password" class="input @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
 
                     @error('password')
@@ -30,14 +30,14 @@
             </div>
 
             <div>
-                <div>
+                <div class="mb-4">
                     <input id="password-confirm" placeholder="Confirm new password" type="password" class="input" name="password_confirmation" required autocomplete="new-password">
                 </div>
             </div>
 
             <div>
                 <div class="flex justify-around items-center pt-2 pb-4">
-                    <button type="submit" class="button">
+                    <button type="submit" class="button hover:text-white">
                         {{ __('Reset Password') }}
                     </button>
                 </div>

@@ -12,7 +12,7 @@
         <h3 class="text-xl text-grey mb-4">Try it now, completely free.<h3>
 
         <div class="flex justify-center mt-12">
-            <a href="/login" class="button mx-6">{{ __('Login') }}</a>
+            <a href="/login" class="button hover:text-white mx-6">{{ __('Login') }}</a>
             <span class="mx-6 text-xl text-grey font-medium">or</span>
             <a href="/features" class="arrow-link mx-6">Look at the features</a>
         </div>
@@ -25,7 +25,7 @@
             @csrf
             <div>
 
-                <div>
+                <div class="mb-4">
                     <input id="username" type="text" class="input @error('username') is-invalid @enderror" placeholder="Username" name="username" value="{{ old('username') }}" required autocomplete="username">
 
                     @error('username')
@@ -36,7 +36,7 @@
 
             <div>
 
-                <div>
+                <div class="mb-4">
                     <input id="email" type="email" class="input @error('email') is-invalid @enderror" placeholder="E-mail" name="email" value="{{ old('email') }}" required autocomplete="email">
 
                     @error('email')
@@ -47,7 +47,7 @@
 
             <div>
 
-                <div>
+                <div class="mb-4">
                     <input id="password" type="password" class="input @error('password') is-invalid @enderror" placeholder="Password" name="password" required autocomplete="new-password">
 
                     @error('password')
@@ -58,14 +58,14 @@
 
             <div>
 
-                <div>
+                <div class="mb-4">
                     <input id="password-confirm" type="password" class="input" name="password_confirmation" placeholder="Confirm password" required autocomplete="new-password">
                 </div>
             </div>
 
             <div>
                 <div class="flex justify-center pt-2 pb-4">
-                    <button type="submit" class="button">
+                    <button type="submit" class="button hover:text-white">
                         {{ __('Register') }}
                     </button>
                 </div>

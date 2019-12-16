@@ -1,11 +1,7 @@
 <template>
-    <div class="flex items-center mr-6">
-        <button v-for="(color, theme) in themes"
-            :key="theme"
-            class="rounded-full w-4 h-4 bg-page focus:outline-none mr-2 border border-green"
-            :style="{ backgroundColor: color}" 
-            @click="selectedTheme = theme">
-        </button>
+    <div>
+        <button class="focus:outline-none text-grey font-medium pt-2 pb-1 px-4 w-full text-left hover:text-green" v-if="selectedTheme === 'theme-light'" @click="selectedTheme = 'theme-dark'">Switch to dark theme</button>
+        <button class="focus:outline-none text-grey font-medium pt-2 pb-1 px-4 w-full text-left hover:text-green" v-if="selectedTheme === 'theme-dark'" @click="selectedTheme = 'theme-light'">Switch to light theme</button>
     </div>
 </template>
 
@@ -13,10 +9,6 @@
     export default {
         data() {
             return {
-                themes: {
-                    'theme-light': 'white',
-                    'theme-dark': '#272727'
-                },
                 selectedTheme: 'theme-light'
             };
         },

@@ -6,4 +6,6 @@
     <h1 class="font-bold text-green text-4xl mt-12">Coming soon!</h1>
 </div>
 
+<login-modal></login-modal>
+
 @endsection

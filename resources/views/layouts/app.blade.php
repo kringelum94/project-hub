@@ -14,7 +14,7 @@
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" rel="stylesheet">
 
     <!-- Styles -->
@@ -37,16 +37,13 @@
                     <div class="ml-auto flex items-center">
                         <dropdown>
                             <template v-slot:trigger>
-                                <button class="flex items-center text-green font-bold">
+                                <button class="flex items-center text-green font-bold focus:outline-none">
                                     <img class="rounded-full mr-3 w-8" src="{{ gravatar_url(auth()->user()->email) }}">
                                     {{ Auth::user()->username }}
                                 </button>
                             </template>
                             <theme-switcher></theme-switcher>
-                            <form action="/logout" method="POST">
-                                @csrf
-                                <button type="submit">Logout</button>
-                            </form>
+                            <a href="/logout" @click.prevent="$modal.show('logout-modal')" class="text-red font-medium pt-1 pb-2 px-4 block w-full text-left hover:text-green focus:outline-none">Logout</a>
                         </dropdown>
                     </div>
                 </div>
@@ -55,6 +52,7 @@
 
         <main class="container mx-auto py-4">
             @yield('content')
+            <logout-modal></logout-modal>
         </main>
     </div>
 </body>

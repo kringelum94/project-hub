@@ -1,1 +1,1 @@
-{{ auth()->user() == $activity->user ? 'You' : $activity->user->username }} deleted the list: "{{ $activity->subject->name }}"
+{{ auth()->user() == $activity->user ? 'You' : $activity->user->username }} deleted a list.

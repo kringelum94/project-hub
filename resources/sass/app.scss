@@ -8,14 +8,15 @@
 @import "components/box";
 @import "components/links";
 @import "components/input";
+@import "components/dropdown";
 
 @tailwind base;
 
 @tailwind components;
 
-/* .bg-page, bg-header {
-    transition: background-color 100ms linear;
-} */
+body {
+    font-family: "Roboto", sans-serif;
+}
 
 .title {
     @apply .font-bold .text-green .text-2xl .mb-4;

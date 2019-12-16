@@ -1,1 +1,1 @@
-{{ auth()->user() == $activity->user ? 'You' : $activity->user->username }} deleted the task: "{{ $activity->subject->description }}"
+{{ auth()->user() == $activity->user ? 'You' : $activity->user->username }} deleted a task.

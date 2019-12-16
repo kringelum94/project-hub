@@ -1,5 +1,8 @@
 <template>
       <modal name="new-project-modal" classes="box" height="auto">
+        <a href="" @click.prevent="$modal.hide('new-project-modal')">
+            <i class="fas fa-times text-grey font-bold text-2xl absolute right-0 top-0 p-4 hover:text-red"></i>
+        </a>
         <h2 class="title text-center py-4"> Create a project </h2>
         <form @submit.prevent="submit">
             <div>
@@ -11,7 +14,7 @@
 
             <div>
                 <div class="mb-4">
-                    <textarea rows="3" class="textarea input" :class="form.errors.title ? 'is-invalid' : ''" v-model="form.description" required placeholder="Project description" name="description"></textarea>
+                    <textarea rows="3" class="textarea input" :class="form.errors.description ? 'is-invalid' : ''" v-model="form.description" required placeholder="Project description" name="description"></textarea>
                     <span class="text-red text-sm my-1 block text-center" v-if="form.errors.description" v-text="form.errors.description[0]"></span>
                 </div>
             </div>

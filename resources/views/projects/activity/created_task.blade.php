@@ -1,1 +1,1 @@
-{{ auth()->user() == $activity->user ? 'You' : $activity->user->username }} created the task: "{{ $activity->subject->description }}"
+{{ auth()->user() == $activity->user ? 'You' : $activity->user->username }} created the task: "{{ isset($activity->subject->description) ? $activity->subject->description : 'DELETED' }}"

@@ -189,6 +189,19 @@
   border-color: #27ae60;
 }
 
+.dropdown-menu {
+  position: absolute;
+  background-color: var(--header-background-color);
+  box-shadow: 0px 6px 12px 0px rgba(0, 0, 0, 0.2);
+  border-width: 1px;
+  border-color: #27ae60;
+  border-radius: 0.5rem;
+  margin-top: 0.5rem;
+  right: 0;
+  z-index: 10;
+  width: 190px;
+}
+
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
 
 /* Document
@@ -818,9 +831,9 @@ video {
   }
 }
 
-/* .bg-page, bg-header {
-    transition: background-color 100ms linear;
-} */
+body {
+  font-family: "Roboto", sans-serif;
+}
 
 .title {
   font-weight: 700;

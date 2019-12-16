@@ -46,12 +46,17 @@ class ProjectsController extends Controller
 
     public function update(Project $project){
         $this->authorize('update', $project);
+
         $attributes = request()->validate([
             'title'=> ['required', 'min:3', 'max:191'], 
             'description' => ['required', 'min:3']
             ]);
 
         $project->update($attributes);
+
+        if (request()->wantsJson()){
+            return ['message' => $project->path()];
+        }
         
         return redirect($project->path());
     }
@@ -59,6 +64,9 @@ class ProjectsController extends Controller
     public function destroy(Project $project){
         $this->authorize('manage', $project);
         $project->delete();
+        if (request()->wantsJson()){
+            return ['message' => '/projects'];
+        }
         return redirect('/projects');
     }
 }

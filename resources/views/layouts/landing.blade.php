@@ -14,14 +14,15 @@
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" rel="stylesheet">
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
-<body class="bg-grey-light">
+<body class="theme-light bg-page">
     <div id="app">
-        <nav class="bg-white">
+        <nav class="bg-header">
             <div class="container mx-auto">
                 <div class="flex justify-between items-center pt-3 pb-2">
                     <h1>
@@ -38,13 +39,13 @@
                                 <a class="menu-link relative {{ set_active('/') }}" href="/">{{ __('Register') }}</a>
                             </li>
                             <li class="mr-12 font-bold text-green text-lg">
-                                <a class="menu-link relative {{ set_active('/login') }}" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                <a class="menu-link relative" @click.prevent="$modal.show('login-modal')" href="/login">{{ __('Login') }}</a>
                             </li>
                             <li class="mr-12 font-bold text-green text-lg">
-                                <a class="menu-link relative {{ set_active('/features') }}" href="/features">{{ __('Features') }}</a>
+                                <a class="menu-link relative {{ set_active('features') }}" href="/features">{{ __('Features') }}</a>
                             </li>
                             <li class="mr-12 font-bold text-green text-lg">
-                                <a class="menu-link relative {{ set_active('/about') }}" href="/about">{{ __('About us') }}</a>
+                                <a class="menu-link relative {{ set_active('about') }}" href="/about">{{ __('About us') }}</a>
                             </li>
                     </ul>
                 </div>

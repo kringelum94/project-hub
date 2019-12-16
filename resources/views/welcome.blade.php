@@ -12,7 +12,7 @@
         <h3 class="text-xl text-grey mb-4">Try it now, completely free.<h3>
 
         <div class="flex justify-center mt-12">
-            <a href="/login" class="button hover:text-white mx-6">{{ __('Login') }}</a>
+            <a href="/login" @click.prevent="$modal.show('login-modal')" class="button hover:text-white mx-6">{{ __('Login') }}</a>
             <span class="mx-6 text-xl text-grey font-medium">or</span>
             <a href="/features" class="arrow-link mx-6">Look at the features</a>
         </div>
@@ -73,5 +73,7 @@
         </form>
     </div>
 </div>
+
+<login-modal></login-modal>
 
 @endsection

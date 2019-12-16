@@ -26,20 +26,35 @@ class ProjectTaskController extends Controller
 
         $tasklist->addTask($attributes);
 
+        if (request()->wantsJson()){
+            return ['message' => $project->path() . '/tasks'];
+        }
+
         return redirect($project->path() . '/tasks');
     }
 
     public function update(Project $project, Task $task){
-        $this->authorize('update', $task->tasklist->project);
-
-/*      $attributes = request()->validate([
-            'description' => 'required'
-        ]);
-
-        $task->update($attributes); */
+        $this->authorize('update', $project);
+        
+        if(request('description')){
+            $task->update(request()->validate(['description' => 'required']));
+        }
 
         request('completed') ? $task->complete() : $task->incomplete();
 
+        if (request()->wantsJson()){
+            return ['message' => $project->path() . '/tasks'];
+        }
+
+        return redirect($project->path() . '/tasks');
+    }
+
+    public function destroy(Project $project, Task $task){
+        $this->authorize('manage', $project);
+        $task->delete();
+        if (request()->wantsJson()){
+            return ['message' => $project->path() . '/tasks'];
+        }
         return redirect($project->path() . '/tasks');
     }
 }

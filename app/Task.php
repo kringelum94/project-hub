@@ -10,7 +10,11 @@ class Task extends Model
 
     protected $guarded = [];
 
-    protected static $recordableEvents = ['created', 'deleted'];
+    protected $casts = [
+        'completed' => 'boolean'
+    ];
+
+    protected static $recordableEvents = ['created', 'updated', 'deleted'];
 
     protected $touches = ['tasklist'];
 

@@ -1,9 +1,9 @@
 <template>
-    <div class="dropdown">
+    <div class="dropdown relative">
         <div @click.prevent="isOpen = !isOpen" aria-haspopup="true" :aria-expanded="isOpen">
             <slot name="trigger"></slot>
         </div>
-        <div v-show="isOpen" class="dropdown-menu absolute box">
+        <div v-show="isOpen" class="dropdown-menu">
             <slot></slot>
         </div>
     </div>

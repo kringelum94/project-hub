@@ -22,17 +22,17 @@ class ProjectHubForm {
     }
 
     patch(endpoint) {
-        return this.submit(endpoint, 'patch');
+        return this.submit(endpoint, "patch");
     }
 
     delete(endpoint) {
-        return this.submit(endpoint, 'delete');
+        return this.submit(endpoint, "delete");
     }
 
-    submit(endpoint, requestType = 'post') {
+    submit(endpoint, requestType = "post") {
         return axios[requestType](endpoint, this.data())
-            .catch(this.onFail.bind(this))
-            .then(this.onSuccess.bind(this));
+            .then(this.onSuccess.bind(this))
+            .catch(this.onFail.bind(this));
     }
 
     onSuccess(response) {
@@ -43,8 +43,7 @@ class ProjectHubForm {
 
     onFail(error) {
         this.errors = error.response.data.errors;
-
-        throw error;
+        console.log(error.response);
     }
 }
 

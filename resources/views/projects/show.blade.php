@@ -8,13 +8,9 @@
                 </p>
                 @can ('manage', $project)
                     <span class="mx-6 text-grey no-underline text-lg font-medium">|</span>
-                    <a href="{{$project->path()}}/edit" class="button">Edit project</a>
-                    <a href="{{$project->path()}}/invitations" class="button">Add/remove user</a>
-                    <form method="POST" action="{{ $project->path() }}">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="button danger">Delete project</button>
-                    </form>
+                    <a href="{{$project->path()}}/edit" class="button" @click.prevent="$modal.show('edit-project-modal', {title: '{{ $project->title }}', description: '{{ $project->description }}', path: '{{ $project->path() }}' })">Edit project</a>
+                    <a href="{{$project->path()}}/invitations" class="button" @click.prevent="$modal.show('invite-member-modal', {path: '{{ $project->path() }}/invitations'})">Invite user</a>
+                    <a href="{{$project->path()}}/delete" class="button danger" @click.prevent="$modal.show('delete-project-modal', {path: '{{ $project->path() }}'})">Delete project</a>
                 @endcan
             </div>
             <div class="flex items-center">
@@ -56,9 +52,9 @@
             <div class="text-green text-lg font-medium">Members</div>
             <div class="flex items-center">
                 @foreach ($project->members as $member)
-                    <img src="{{ gravatar_url($member->email) }}" alt="{{ $member->username }}'s avatar" class="rounded-full w-8 mr-2">
+                    <img title="{{ $project->creator->username }}" src="{{ gravatar_url($member->email) }}" alt="{{ $member->username }}'s avatar" class="rounded-full w-8 mr-2">
                 @endforeach
-                    <img src="{{ gravatar_url($project->creator->email) }}" alt="{{ $project->creator->username }}'s avatar" class="rounded-full w-8 mr-2">
+                    <img title="{{ $project->creator->username }}" src="{{ gravatar_url($project->creator->email) }}" alt="{{ $project->creator->username }}'s avatar" class="rounded-full w-8 mr-2">
             </div>
         </div>
         <div class="box mt-8">
@@ -72,4 +68,7 @@
         </div>
     </div>
 
+<edit-project-modal></edit-project-modal>
+<invite-member-modal></invite-member-modal>
+<delete-project-modal></delete-project-modal>
 @endsection

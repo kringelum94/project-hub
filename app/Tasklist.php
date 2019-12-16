@@ -12,6 +12,8 @@ class Tasklist extends Model
 
     protected $touches = ['project'];
 
+    protected static $recordableEvents = ['created', 'updated', 'deleted'];
+
     public function tasks(){
         return $this->hasMany(Task::class);
     }

@@ -20,6 +20,10 @@ class ProjectInvitationsController extends Controller
         
         $project->invite($user);
 
+        if (request()->wantsJson()){
+            return ['message' => $project->path()];
+        }
+
         return redirect($project->path());
     }
 }

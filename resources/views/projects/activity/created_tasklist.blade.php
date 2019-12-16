@@ -1,1 +1,1 @@
-{{ auth()->user() == $activity->user ? 'You' : $activity->user->username }} created the list: "{{ $activity->subject->name }}"
+{{ auth()->user() == $activity->user ? 'You' : $activity->user->username }} created the list: "{{ isset($activity->subject->name) ? $activity->subject->name : 'DELETED' }}"

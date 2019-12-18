@@ -30,7 +30,11 @@ class ProjectsController extends Controller
             'description' => ['required', 'min:3']
             ]);
 
-        $project = auth()->user()->projects()->create($attributes);
+        $user = auth()->user();
+
+        $project = $user->projects()->create($attributes);
+
+        $project->invite($user);
         
         if (request()->wantsJson()){
             return ['message' => $project->path()];

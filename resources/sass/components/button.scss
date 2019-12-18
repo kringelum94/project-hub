@@ -1,10 +1,14 @@
 .button {
-    @apply .bg-button .border-2 .border-green .text-green .font-medium .text-lg rounded-full px-4 py-1 mx-3;
+    @apply .bg-button .border-2 .border-green .text-green .font-medium .text-lg .rounded-full .px-4 .py-1 .mx-3;
     transition: background-color 100ms linear;
 }
 
 .button:hover {
     @apply .bg-green .text-button-hover;
+}
+
+.button:focus {
+    outline: 0 !important;
 }
 
 .button.danger {

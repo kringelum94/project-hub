@@ -1,78 +1,100 @@
 <template>
     <div>
-    <div class="panel panel-primary">
-            <div class="panel-heading" id="accordion">
-                <span class="glyphicon glyphicon-comment"></span> {{ project.title }}''
-                <div class="btn-group pull-right">
-                    <a type="button" class="btn btn-default btn-xs" data-toggle="collapse" data-parent="#accordion-" :href="'#collapseOne-' + project.id">
-                        <span class="glyphicon glyphicon-chevron-down"></span>
-                    </a>
-                </div>
-            </div>
-            <div class="panel-collapse collapse" :id="'collapseOne-' + project.id">
-                <div class="panel-body chat-panel">
-                    <ul class="chat">
-                        <li v-for="conversation in conversations">
-                        <span class="chat-img pull-left">
-                            <img :title="conversation.user.username" :src="'https://www.gravatar.com/avatar/' + conversation.user.email + '?s=60&d=https://danielkringelum.dk/no-image-icon-grey.png'" :alt="conversation.user.username + 's avatar'" class="rounded-full w-8 mr-2">
-                        </span>
-                            <div class="chat-body clearfix">
-                                <div class="header">
-                                    <strong class="primary-font">{{ conversation.user.username }}</strong>
-                                </div>
-                                <p>
-                                    {{ conversation.message }}
-                                </p>
+        <div ref="chatDiv" class="overflow-y-auto h-60 px-4">
+            <ul class="chat">
+                <li v-for="conversation in conversations" :key="conversation.id">
+                    <div class="bg-header border-2 border-green mb-6 p-2 rounded-lg block max-w-70 w-fit-content shadow" :class="{'ml-auto' : user.id == conversation.user.id}">
+                        <div class="flex items-center mb-2" :class="user.id == conversation.user.id ? 'pl-4 justify-end' : 'pr-4'">
+                            <img 
+                                :title="conversation.user.username" 
+                                :src="'https://www.gravatar.com/avatar/' + conversation.user.email + '?s=60&d=https://danielkringelum.dk/no-image-icon-grey.png'" 
+                                :alt="conversation.user.username + 's avatar'" 
+                                class="rounded-full w-12"
+                                :class="user.id == conversation.user.id ? 'chat-img-right' : 'mr-4'">
+                            <div>
+                                <strong class="title">{{ conversation.user.username }}</strong>
+                                <p class="text-grey text-sm font-bold">{{ conversation.message }}</p>
                             </div>
-                        </li>
-                    </ul>
-                </div>
-                <div class="panel-footer">
-                    <div class="input-group">
-                        <input id="btn-input" type="text" class="form-control input-sm" placeholder="Type your message here..." v-model="message" @keyup.enter="store()" autofocus />
-                        <span class="input-group-btn">
-                            <button class="btn btn-warning btn-sm" id="btn-chat" @click.prevent="store()">
-                                Send</button>
-                        </span>
+                        </div>
                     </div>
-                </div>
+                </li>
+            </ul>
+        </div>
+        <div class="panel-footer">
+            <div>
+                <validation-observer ref="observer" v-slot="{ handleSubmit }">
+                    <form @submit.prevent="handleSubmit(store)">
+                        <validation-provider rules="required" v-slot="{ errors }">
+                            <textarea type="text" class="textarea input w-full" v-model="message" @keyup.enter="store()" placeholder="Type your message here..."></textarea>
+                            <button class="button my-4">Send message</button>
+                            <span class="text-red font-bold">{{ errors[0] }}</span>
+                        </validation-provider>
+                    </form>
+                </validation-observer>
             </div>
         </div>
     </div>
 </template>
 
 <script>
+    import { ValidationObserver, ValidationProvider, extend } from 'vee-validate';
+    import { required } from 'vee-validate/dist/rules';
+    
+    extend('required', {
+        ...required,
+        message: 'Come on.. Write something!'
+    });
+
     export default {
-        props: ['project'],
+        props: ['project', 'user', 'messages'],
+
+        components: {
+            ValidationProvider,
+            ValidationObserver
+        },
 
         data() {
             return {
-                conversations: [],
+                conversations: Object.values(this.messages),
                 message: '',
                 project_id: this.project.id
             }
         },
 
         mounted() {
+            this.scroll();
             this.listenForMessageSent();
         },
 
+        updated() {
+            this.scroll();
+        },
+
         methods: {
+            scroll(){
+                this.$refs.chatDiv.scrollTop = this.$refs.chatDiv.scrollHeight;
+            },
+
             store() {
+                this.uiState = "form submitted";
                 axios.post('/projects/' + this.project_id + '/chat', {message: this.message, project_id: this.project.id})
                 .then((response) => {
-                    this.message = '';
+                    this.reset();
                     console.log(response);
                     this.conversations.push(response.data);
                 });
             },
 
-                listenForMessageSent() {
+            listenForMessageSent() {
                 Echo.private('projects.' + this.project.id)
                     .listen('MessageSent', (e) => {
                         console.log(e);
                         this.conversations.push(e);
                     });
+            },
+            reset() {
+                this.message = '';
+                this.$refs.observer.reset();
             }
         }
     }

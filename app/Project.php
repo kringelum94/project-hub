@@ -35,12 +35,12 @@ class Project extends Model
     }
 
     /**
-     * A user can have many messages
+     * A project can have many messages
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function messages()
+    public function conversations()
     {
-        return $this->hasMany(Message::class);
+        return $this->hasMany(Conversation::class);
     }
 }

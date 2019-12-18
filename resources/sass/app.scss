@@ -18,6 +18,23 @@ body {
     font-family: "Roboto", sans-serif;
 }
 
+.w-fit-content {
+    width: fit-content;
+}
+
+.max-w-70 {
+    max-width: 70%;
+}
+
+.h-60 {
+    height: 60vh;
+}
+
+.chat-img-right {
+    @apply .ml-4;
+    order: 1;
+}
+
 .title {
     @apply .font-bold .text-green .text-2xl .mb-4;
 }

@@ -39,6 +39,10 @@
   color: var(--text-button-hover-color);
 }
 
+.button:focus {
+  outline: 0 !important;
+}
+
 .button.danger {
   border-color: #c0392b;
   color: #c0392b;
@@ -833,6 +837,26 @@ video {
 
 body {
   font-family: "Roboto", sans-serif;
+}
+
+.w-fit-content {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+.max-w-70 {
+  max-width: 70%;
+}
+
+.h-60 {
+  height: 60vh;
+}
+
+.chat-img-right {
+  margin-left: 1rem;
+  -webkit-box-ordinal-group: 2;
+          order: 1;
 }
 
 .title {

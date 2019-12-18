@@ -39,7 +39,7 @@
                 <i class="far fa-calendar project-icon-big"></i>
             </div>
             <div class="box w-1/2 mx-4 h-64 relative">
-                <h2 class="title"><a href="#">Chat<span class="box-link"></span></a></h2>
+                <h2 class="title"><a href="{{$project->path()}}/chat">Chat<span class="box-link"></span></a></h2>
                 <div class="text-grey text-lg font-medium w-4/5">Chat with the group members about everything or nothing. <br> You decide!</div>
                 <i class="fas fa-comments project-icon-big"></i>
             </div>
@@ -52,9 +52,9 @@
             <div class="text-green text-lg font-medium">Members</div>
             <div class="flex items-center">
                 @foreach ($project->members as $member)
-                    <img title="{{ $member->username }}" src="{{ gravatar_url($member->email) }}" alt="{{ $member->username }}'s avatar" class="rounded-full w-8 mr-2">
+                <img title="{{ $member->username }} {{ $member->id == $project->creator->id ? '- ADMIN' : '' }}" src="{{ gravatar_url($member->email) }}" alt="{{ $member->username }}'s avatar" 
+                class="rounded-full w-8 mr-2 {{ $member->id == $project->creator->id ? 'border-2 border-green' : '' }}">
                 @endforeach
-                    <img title="{{ $project->creator->username }}" src="{{ gravatar_url($project->creator->email) }}" alt="{{ $project->creator->username }}'s avatar" class="rounded-full w-8 mr-2">
             </div>
         </div>
         <div class="box mt-8">

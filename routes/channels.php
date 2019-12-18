@@ -1,4 +1,5 @@
 <?php
+use App\Project;
 
 /*
 |--------------------------------------------------------------------------
@@ -11,6 +12,6 @@
 |
 */
 
-Broadcast::channel('App.User.{id}', function ($user, $id) {
-    return (int) $user->id === (int) $id;
+Broadcast::channel('projects.{project}', function ($user, Project $project) {
+     return $project->members->contains($user);
 });

@@ -46,4 +46,14 @@ class User extends Authenticatable
             $query->where('user_id', $this->id);
         })->get();
     }
+
+    /**
+     * A user can have many messages
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function messages()
+    {
+        return $this->hasMany(Message::class);
+    }
 }

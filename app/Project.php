@@ -33,4 +33,14 @@ class Project extends Model
     public function members(){
         return $this->belongsToMany(User::class, 'project_members')->withTimestamps();
     }
+
+    /**
+     * A user can have many messages
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function messages()
+    {
+        return $this->hasMany(Message::class);
+    }
 }

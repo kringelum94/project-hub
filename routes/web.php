@@ -43,6 +43,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/projects/{project}/tasks/{tasklist}', 'ProjectTaskController@store');
     Route::patch('/projects/{project}/task/{task}', 'ProjectTaskController@update');
     Route::delete('/projects/{project}/task/{task}', 'ProjectTaskController@destroy');
+
+    // Chat routes
+    Route::get('/projects/{project}/chat', 'ProjectChatController@index');
+    Route::post('/projects/{project}/chat', 'ProjectChatController@store');
 });
 
 Auth::routes();

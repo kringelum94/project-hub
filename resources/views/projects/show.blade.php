@@ -52,7 +52,7 @@
             <div class="text-green text-lg font-medium">Members</div>
             <div class="flex items-center">
                 @foreach ($project->members as $member)
-                    <img title="{{ $project->creator->username }}" src="{{ gravatar_url($member->email) }}" alt="{{ $member->username }}'s avatar" class="rounded-full w-8 mr-2">
+                    <img title="{{ $member->username }}" src="{{ gravatar_url($member->email) }}" alt="{{ $member->username }}'s avatar" class="rounded-full w-8 mr-2">
                 @endforeach
                     <img title="{{ $project->creator->username }}" src="{{ gravatar_url($project->creator->email) }}" alt="{{ $project->creator->username }}'s avatar" class="rounded-full w-8 mr-2">
             </div>

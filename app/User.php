@@ -37,6 +37,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    protected $appends = ['gravatar_pic'];
+
     public function projects(){
         return $this->hasMany(Project::class, 'creator_id')->latest('updated_at');
     }
@@ -55,5 +57,10 @@ class User extends Authenticatable
     public function conversations()
     {
         return $this->hasMany(Conversation::class);
+    }
+
+    public function getGravatarPicAttribute(){
+        $emailHash = md5($this->email);
+        return "http://www.gravatar.com/avatar/$emailHash";
     }
 }

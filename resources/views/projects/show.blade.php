@@ -52,7 +52,7 @@
             <div class="text-green text-lg font-medium">Members</div>
             <div class="flex items-center">
                 @foreach ($project->members as $member)
-                <img title="{{ $member->username }} {{ $member->id == $project->creator->id ? '- ADMIN' : '' }}" src="{{ gravatar_url($member->email) }}" alt="{{ $member->username }}'s avatar" 
+                <img title="{{ $member->username }} {{ $member->id == $project->creator->id ? '- ADMIN' : '' }}" src="{{ gravatar_url($member->getGravatarPicAttribute()) }}" alt="{{ $member->username }}'s avatar" 
                 class="rounded-full w-8 mr-2 {{ $member->id == $project->creator->id ? 'border-2 border-green' : '' }}">
                 @endforeach
             </div>

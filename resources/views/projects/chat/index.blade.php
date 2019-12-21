@@ -12,6 +12,8 @@
             </div>
     </header>
 
+    <h2 class="title-big">Chat</h2>
+
 <group-chat :user="{{ Auth::user() }}" :messages="{{ $project->conversations->sortByDesc('created_at')->take(10)->load('user') }}" :project="{{ $project }}" :key="{{ $project->id }}"></group-chat>
 
 @endsection

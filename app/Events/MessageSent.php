@@ -41,10 +41,11 @@ class MessageSent implements ShouldBroadcast
     {
         return [
             'message' => $this->conversation->message,
+            'created_at' => $this->conversation->created_at,
             'user' => [
                 'id' => $this->conversation->user->id,
                 'username' => $this->conversation->user->username,
-                'email' => $this->conversation->user->email
+                'gravatar_pic' => $this->conversation->user->getGravatarPicAttribute()
             ]
         ];
     }

@@ -24,10 +24,8 @@
         <form method="POST" action="{{ route('register') }}">
             @csrf
             <div>
-
                 <div class="mb-4">
                     <input id="username" type="text" class="input @error('username') is-invalid @enderror" placeholder="Username" name="username" value="{{ old('username') }}" required autocomplete="username">
-
                     @error('username')
                         @include ('error')
                     @enderror

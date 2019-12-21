@@ -11,7 +11,7 @@ class ProjectChatController extends Controller
 
     public function index(Project $project){
         $this->authorize('update', $project);
-        return view('projects.chat.chat', compact('project'));
+        return view('projects.chat.index', compact('project'));
     }
 
 

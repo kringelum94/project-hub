@@ -38,7 +38,7 @@
                         <dropdown>
                             <template v-slot:trigger>
                                 <button class="flex items-center text-green font-bold focus:outline-none">
-                                    <img class="rounded-full mr-3 w-8" src="{{ gravatar_url(auth()->user()->email) }}">
+                                    <img class="rounded-full mr-3 w-8" src="{{ gravatar_url(auth()->user()->getGravatarPicAttribute()) }}">
                                     {{ Auth::user()->username }}
                                 </button>
                             </template>

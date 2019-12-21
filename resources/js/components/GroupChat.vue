@@ -7,12 +7,15 @@
                         <div class="flex items-center mb-2" :class="user.id == conversation.user.id ? 'pl-4 justify-end' : 'pr-4'">
                             <img 
                                 :title="conversation.user.username" 
-                                :src="'https://www.gravatar.com/avatar/' + conversation.user.email + '?s=60&d=https://danielkringelum.dk/no-image-icon-grey.png'" 
+                                :src="conversation.user.gravatar_pic + '?s=60&d=https://danielkringelum.dk/no-image-icon-grey.png'" 
                                 :alt="conversation.user.username + 's avatar'" 
                                 class="rounded-full w-12"
                                 :class="user.id == conversation.user.id ? 'chat-img-right' : 'mr-4'">
                             <div>
-                                <strong class="title">{{ conversation.user.username }}</strong>
+                                <div>
+                                    <strong class="title">{{ conversation.user.username }}</strong>
+                                    <span class="text-grey text-xs ml-1">{{ conversation.created_at | moment("from", "now") }}</span>
+                                </div>
                                 <p class="text-grey text-sm font-bold">{{ conversation.message }}</p>
                             </div>
                         </div>
@@ -80,7 +83,6 @@
                 axios.post('/projects/' + this.project_id + '/chat', {message: this.message, project_id: this.project.id})
                 .then((response) => {
                     this.reset();
-                    console.log(response);
                     this.conversations.push(response.data);
                 });
             },
@@ -88,14 +90,13 @@
             listenForMessageSent() {
                 Echo.private('projects.' + this.project.id)
                     .listen('MessageSent', (e) => {
-                        console.log(e);
                         this.conversations.push(e);
                     });
             },
             reset() {
                 this.message = '';
                 this.$refs.observer.reset();
-            }
+            },
         }
     }
 </script>

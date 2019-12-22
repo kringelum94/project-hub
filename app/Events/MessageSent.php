@@ -2,7 +2,7 @@
 
 namespace App\Events;
 
-use App\Conversation;
+use App\Message;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PresenceChannel;
@@ -15,16 +15,16 @@ class MessageSent implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $conversation;
+    public $message;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct(Conversation $conversation)
+    public function __construct(Message $message)
     {
-        $this->conversation = $conversation;
+        $this->message = $message;
     }
 
     /**
@@ -34,18 +34,18 @@ class MessageSent implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('projects.' . $this->conversation->project->id);
+        return new PrivateChannel('projects.' . $this->message->project->id);
     }
 
     public function broadcastWith()
     {
         return [
-            'message' => $this->conversation->message,
-            'created_at' => $this->conversation->created_at,
+            'text' => $this->message->text,
+            'created_at' => $this->message->created_at,
             'user' => [
-                'id' => $this->conversation->user->id,
-                'username' => $this->conversation->user->username,
-                'gravatar_pic' => $this->conversation->user->getGravatarPicAttribute()
+                'id' => $this->message->user->id,
+                'username' => $this->message->user->username,
+                'gravatar_pic' => $this->message->user->getGravatarPicAttribute()
             ]
         ];
     }

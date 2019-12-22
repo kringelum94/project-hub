@@ -54,9 +54,9 @@ class User extends Authenticatable
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function conversations()
+    public function messages()
     {
-        return $this->hasMany(Conversation::class);
+        return $this->hasMany(Message::class);
     }
 
     public function getGravatarPicAttribute(){

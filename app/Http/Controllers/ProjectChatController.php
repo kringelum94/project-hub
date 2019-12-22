@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Conversation;
+use App\Message;
 use App\Project;
 use App\Events\MessageSent;
 use Illuminate\Http\Request;
@@ -25,14 +25,14 @@ class ProjectChatController extends Controller
     {
         $this->authorize('update', $project);   
 
-        $conversation = Conversation::create([
-            'message' => request('message'),
+        $message = Message::create([
+            'text' => request('text'),
             'user_id' => auth()->user()->id,
             'project_id' => request('project_id')
         ]);
 
-        broadcast(new MessageSent($conversation))->toOthers(); 
+        broadcast(new MessageSent($message))->toOthers(); 
 
-        return $conversation->load('user');   
+        return $message->load('user');   
     }
 }

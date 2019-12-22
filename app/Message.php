@@ -6,7 +6,7 @@ use App\Project;
 use App\User;
 use Illuminate\Database\Eloquent\Model;
 
-class Conversation extends Model
+class Message extends Model
 {
     protected $guarded = [];
 

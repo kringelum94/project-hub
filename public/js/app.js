@@ -2400,15 +2400,15 @@ Object(vee_validate__WEBPACK_IMPORTED_MODULE_0__["extend"])('required', _objectS
   message: 'Come on.. Write something!'
 }));
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['project', 'user', 'messages'],
+  props: ['project', 'user', 'old_messages'],
   components: {
     ValidationProvider: vee_validate__WEBPACK_IMPORTED_MODULE_0__["ValidationProvider"],
     ValidationObserver: vee_validate__WEBPACK_IMPORTED_MODULE_0__["ValidationObserver"]
   },
   data: function data() {
     return {
-      conversations: Object.values(this.messages),
-      message: '',
+      messages: Object.values(this.old_messages),
+      text: '',
       project_id: this.project.id
     };
   },
@@ -2428,19 +2428,19 @@ Object(vee_validate__WEBPACK_IMPORTED_MODULE_0__["extend"])('required', _objectS
 
       this.uiState = "form submitted";
       axios.post('/projects/' + this.project_id + '/chat', {
-        message: this.message,
+        text: this.text,
         project_id: this.project.id
       }).then(function (response) {
         _this.reset();
 
-        _this.conversations.push(response.data);
+        _this.messages.push(response.data);
       });
     },
     listenForMessageSent: function listenForMessageSent() {
       var _this2 = this;
 
       Echo["private"]('projects.' + this.project.id).listen('MessageSent', function (e) {
-        _this2.conversations.push(e);
+        _this2.messages.push(e);
       });
     },
     reset: function reset() {
@@ -17594,14 +17594,14 @@ var render = function() {
       _c(
         "ul",
         { staticClass: "chat" },
-        _vm._l(_vm.conversations, function(conversation) {
-          return _c("li", { key: conversation.id }, [
+        _vm._l(_vm.messages, function(message) {
+          return _c("li", { key: message.id }, [
             _c(
               "div",
               {
                 staticClass:
                   "bg-header border-2 border-green mb-6 p-2 rounded-lg block max-w-70 w-fit-content shadow",
-                class: { "ml-auto": _vm.user.id == conversation.user.id }
+                class: { "ml-auto": _vm.user.id == message.user.id }
               },
               [
                 _c(
@@ -17609,7 +17609,7 @@ var render = function() {
                   {
                     staticClass: "flex items-center mb-2",
                     class:
-                      _vm.user.id == conversation.user.id
+                      _vm.user.id == message.user.id
                         ? "pl-4 justify-end"
                         : "pr-4"
                   },
@@ -17617,29 +17617,29 @@ var render = function() {
                     _c("img", {
                       staticClass: "rounded-full w-12",
                       class:
-                        _vm.user.id == conversation.user.id
+                        _vm.user.id == message.user.id
                           ? "chat-img-right"
                           : "mr-4",
                       attrs: {
-                        title: conversation.user.username,
+                        title: message.user.username,
                         src:
-                          conversation.user.gravatar_pic +
+                          message.user.gravatar_pic +
                           "?s=60&d=https://danielkringelum.dk/no-image-icon-grey.png",
-                        alt: conversation.user.username + "s avatar"
+                        alt: message.user.username + "s avatar"
                       }
                     }),
                     _vm._v(" "),
                     _c("div", [
                       _c("div", [
                         _c("strong", { staticClass: "title" }, [
-                          _vm._v(_vm._s(conversation.user.username))
+                          _vm._v(_vm._s(message.user.username))
                         ]),
                         _vm._v(" "),
                         _c("span", { staticClass: "text-grey text-xs ml-1" }, [
                           _vm._v(
                             _vm._s(
                               _vm._f("moment")(
-                                conversation.created_at,
+                                message.created_at,
                                 "from",
                                 "now"
                               )
@@ -17649,7 +17649,7 @@ var render = function() {
                       ]),
                       _vm._v(" "),
                       _c("p", { staticClass: "text-grey text-sm font-bold" }, [
-                        _vm._v(_vm._s(conversation.message))
+                        _vm._v(_vm._s(message.text))
                       ])
                     ])
                   ]
@@ -17699,8 +17699,8 @@ var render = function() {
                                         {
                                           name: "model",
                                           rawName: "v-model",
-                                          value: _vm.message,
-                                          expression: "message"
+                                          value: _vm.text,
+                                          expression: "text"
                                         }
                                       ],
                                       staticClass: "textarea input w-full",
@@ -17708,7 +17708,7 @@ var render = function() {
                                         type: "text",
                                         placeholder: "Type your message here..."
                                       },
-                                      domProps: { value: _vm.message },
+                                      domProps: { value: _vm.text },
                                       on: {
                                         keyup: function($event) {
                                           if (
@@ -17729,7 +17729,7 @@ var render = function() {
                                           if ($event.target.composing) {
                                             return
                                           }
-                                          _vm.message = $event.target.value
+                                          _vm.text = $event.target.value
                                         }
                                       }
                                     }),

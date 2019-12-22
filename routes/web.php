@@ -47,6 +47,8 @@ Route::group(['middleware' => 'auth'], function () {
     // Chat routes
     Route::get('/projects/{project}/chat', 'ProjectChatController@index');
     Route::post('/projects/{project}/chat', 'ProjectChatController@store');
+
+    Route::fallback('ProjectsController@error');
 });
 
 Auth::routes();

@@ -2444,7 +2444,7 @@ Object(vee_validate__WEBPACK_IMPORTED_MODULE_0__["extend"])('required', _objectS
       });
     },
     reset: function reset() {
-      this.message = '';
+      this.text = '';
       this.$refs.observer.reset();
     }
   }
@@ -17710,7 +17710,7 @@ var render = function() {
                                       },
                                       domProps: { value: _vm.text },
                                       on: {
-                                        keyup: function($event) {
+                                        keydown: function($event) {
                                           if (
                                             !$event.type.indexOf("key") &&
                                             _vm._k(
@@ -17723,7 +17723,7 @@ var render = function() {
                                           ) {
                                             return null
                                           }
-                                          return _vm.store()
+                                          return handleSubmit(_vm.store)
                                         },
                                         input: function($event) {
                                           if ($event.target.composing) {

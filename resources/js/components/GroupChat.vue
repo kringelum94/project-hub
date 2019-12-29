@@ -28,7 +28,10 @@
                 <validation-observer ref="observer" v-slot="{ handleSubmit }">
                     <form @submit.prevent="handleSubmit(store)">
                         <validation-provider rules="required" v-slot="{ errors }">
-                            <textarea type="text" class="textarea input w-full" v-model="text" @keyup.enter="store()" placeholder="Type your message here..."></textarea>
+                            <textarea type="text" class="textarea input w-full" 
+                                v-model="text" @keydown.enter="handleSubmit(store)" 
+                                placeholder="Type your message here...">
+                            </textarea>
                             <button class="button my-4">Send message</button>
                             <span class="text-red font-bold">{{ errors[0] }}</span>
                         </validation-provider>
@@ -94,7 +97,7 @@
                     });
             },
             reset() {
-                this.message = '';
+                this.text = '';
                 this.$refs.observer.reset();
             },
         }

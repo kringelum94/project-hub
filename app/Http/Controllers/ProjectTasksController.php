@@ -46,7 +46,7 @@ class ProjectTasksController extends Controller
     }
 
     public function destroy(Project $project, Tasklist $tasklist){
-        $this->authorize('manage', $project);
+        $this->authorize('update', $project);
         $tasklist->delete();
         if (request()->wantsJson()){
             return ['message' => $project->path() . '/tasks'];

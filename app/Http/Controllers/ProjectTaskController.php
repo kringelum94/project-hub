@@ -50,7 +50,7 @@ class ProjectTaskController extends Controller
     }
 
     public function destroy(Project $project, Task $task){
-        $this->authorize('manage', $project);
+        $this->authorize('update', $project);
         $task->delete();
         if (request()->wantsJson()){
             return ['message' => $project->path() . '/tasks'];
